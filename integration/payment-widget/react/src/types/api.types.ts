@@ -80,4 +80,3 @@ export type PaymentStatus =
   | 'overpaid'
   | 'no_payment'
   | 'failure';
-

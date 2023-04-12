@@ -1,4 +1,3 @@
-
 import { ApiQuote, ApiTxn } from '@/types/api.types';
 
 import { QuoteExpireAnimationEnum } from './enum/quote-expire-animation.enum';
@@ -52,4 +51,3 @@ export type AppConfig = {
   summary?: Summary;
   customDetails?: Record<string, unknown>;
 };
-

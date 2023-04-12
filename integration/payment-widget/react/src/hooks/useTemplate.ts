@@ -15,7 +15,9 @@ function useTemplate() {
     }
   };
 
-  const parseTemplate = (template: string | undefined): TemplatePart[] | undefined => {
+  const parseTemplate = (
+    template: string | undefined,
+  ): TemplatePart[] | undefined => {
     if (template) {
       const elements = template.match(/{[a-z]*:[^\s}]+}|{[^\s}]+}/g);
       return elements?.map((el) => {
