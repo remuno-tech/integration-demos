@@ -9,12 +9,10 @@ import {
   Switch,
 } from '@chakra-ui/react';
 
-import {
-  BUTTON_SIZES,
-  QUOTE_EXPIRE_ANIMATION,
-  WIDGET_THEME,
-  WIDGET_VARIANT,
-} from '../../constants/widgetSettingsOptions';
+import { QuoteExpireAnimationEnum } from '../../types/enum/quote-expire-animation.enum';
+import { WidgetVariantEnum } from '../../types/enum/widget-variant.enum';
+import { WidgetThemeEnum } from '../../types/enum/widget-theme.enum';
+import { WidgetButtonSizeEnum } from '../../types/enum/widget-button-size.enum';
 
 const Styling = () => {
   const { register, control } = useFormContext();
@@ -24,7 +22,7 @@ const Styling = () => {
       <FormControl>
         <FormLabel>Button Size</FormLabel>
         <Select {...register('buttonSize')}>
-          {BUTTON_SIZES.map((btnSize) => (
+          {Object.keys(WidgetButtonSizeEnum).map((btnSize) => (
             <option key={btnSize} value={btnSize}>
               {btnSize}
             </option>
@@ -34,7 +32,7 @@ const Styling = () => {
       <FormControl>
         <FormLabel>Widget Theme</FormLabel>
         <Select {...register('theme')}>
-          {WIDGET_THEME.map((theme) => (
+          {Object.keys(WidgetThemeEnum).map((theme) => (
             <option key={theme} value={theme}>
               {theme}
             </option>
@@ -47,7 +45,7 @@ const Styling = () => {
       <FormControl>
         <FormLabel>Widget Variant</FormLabel>
         <Select {...register('variant')}>
-          {WIDGET_VARIANT.map((variant) => (
+          {Object.keys(WidgetVariantEnum).map((variant) => (
             <option key={variant} value={variant}>
               {variant}
             </option>
@@ -61,7 +59,7 @@ const Styling = () => {
       <FormControl>
         <FormLabel>Quote Expiry Animation</FormLabel>
         <Select {...register('quoteExpireAnimation')}>
-          {QUOTE_EXPIRE_ANIMATION.map((variant) => (
+          {Object.keys(QuoteExpireAnimationEnum).map((variant) => (
             <option key={variant} value={variant}>
               {variant}
             </option>

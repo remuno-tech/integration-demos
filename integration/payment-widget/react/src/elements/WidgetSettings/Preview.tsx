@@ -13,10 +13,10 @@ import {
   Textarea,
 } from '@chakra-ui/react';
 
-import { FIAT_CURRENCY } from '../../constants/widgetSettingsOptions';
 import { ApiCoin } from '../../types/api.types';
 
 import useTemplate from '../../hooks/useTemplate';
+import { FiatCurrencyEnum } from '../../types/enum/fiat-currency.enum';
 
 const Preview = () => {
   const [coinList, setCoinList] = React.useState([]);
@@ -69,8 +69,10 @@ const Preview = () => {
       <FormControl>
         <FormLabel>Fiat Currency</FormLabel>
         <Select {...register('fromFiat')}>
-          {FIAT_CURRENCY.map((currency) => (
-            <option key={currency} value={currency}>{currency}</option>
+          {Object.keys(FiatCurrencyEnum).map((currency) => (
+            <option key={currency} value={currency}>
+              {currency}
+            </option>
           ))}
         </Select>
         <FormHelperText>
