@@ -26,6 +26,8 @@ let DEFAULT_SUMMARY = {
   },
 };
 
+// Widget initial configuration. Applying changes to it and running updateWidget() will cause widget to update with values in it.
+// For example: handleChange function in formUtils.js will update config with corresponding values from the form.
 let remunoConfig = {
   selector: '#widget-preview',
   apiKey: apiKey || '',
