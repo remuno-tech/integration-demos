@@ -1,0 +1,9 @@
+{
+  "singleQuote": true,
+  "trailingComma": "all",
+  "requirePragma": false,
+  "arrowParens": "always",
+  "prettier.eslintIntegration": true,
+  "editor.formatOnSave": true,
+  "jsxSingleQuote": true
+}
