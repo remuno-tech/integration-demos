@@ -8,7 +8,7 @@ import formatBreakline from '../../utils/formatBreakline';
 import { ApiQuote, ApiTxn } from '../../types/api.types';
 
 const WidgetPreview = () => {
-  const { watch } = useFormContext();
+  const { watch, formState } = useFormContext();
 
   const widgetParams = watch();
 
@@ -75,7 +75,7 @@ const WidgetPreview = () => {
   }, [isScriptLoaded]);
 
   useEffect(() => {
-    if (isScriptLoaded) {
+    if (isScriptLoaded && formState.isValid) {
       (window as any).Remuno.Widget.updateConfig(widgetConfig);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

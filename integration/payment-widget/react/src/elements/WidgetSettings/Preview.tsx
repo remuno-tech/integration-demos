@@ -45,7 +45,7 @@ const Preview = () => {
 
   React.useEffect(() => {
     if (merchantId && apiKey) {
-      fetch(`https://api-dev.remuno.com/v1/merchants/${merchantId}/coins`, {
+      fetch(`https://api.remuno.com/v1/merchants/${merchantId}/coins`, {
         headers: { 'x-api-key': apiKey },
       })
         .then((res) => res.json())
@@ -185,7 +185,7 @@ const Preview = () => {
             )}
           />
         </FormLabel>
-        {isEnabledSelectedCoins && (
+        {!!coinList?.length && isEnabledSelectedCoins && (
           <Controller
             control={control}
             name={'selectedCoins'}
