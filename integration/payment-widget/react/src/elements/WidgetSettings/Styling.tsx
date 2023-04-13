@@ -25,7 +25,9 @@ const Styling = () => {
         <FormLabel>Button Size</FormLabel>
         <Select {...register('buttonSize')}>
           {BUTTON_SIZES.map((btnSize) => (
-            <option value={btnSize}>{btnSize}</option>
+            <option key={btnSize} value={btnSize}>
+              {btnSize}
+            </option>
           ))}
         </Select>
       </FormControl>
@@ -33,7 +35,9 @@ const Styling = () => {
         <FormLabel>Widget Theme</FormLabel>
         <Select {...register('theme')}>
           {WIDGET_THEME.map((theme) => (
-            <option value={theme}>{theme}</option>
+            <option key={theme} value={theme}>
+              {theme}
+            </option>
           ))}
         </Select>
         <FormHelperText>
@@ -44,7 +48,9 @@ const Styling = () => {
         <FormLabel>Widget Variant</FormLabel>
         <Select {...register('variant')}>
           {WIDGET_VARIANT.map((variant) => (
-            <option value={variant}>{variant}</option>
+            <option key={variant} value={variant}>
+              {variant}
+            </option>
           ))}
         </Select>
         <FormHelperText>
@@ -56,7 +62,9 @@ const Styling = () => {
         <FormLabel>Quote Expiry Animation</FormLabel>
         <Select {...register('quoteExpireAnimation')}>
           {QUOTE_EXPIRE_ANIMATION.map((variant) => (
-            <option value={variant}>{variant}</option>
+            <option key={variant} value={variant}>
+              {variant}
+            </option>
           ))}
         </Select>
         <FormHelperText>

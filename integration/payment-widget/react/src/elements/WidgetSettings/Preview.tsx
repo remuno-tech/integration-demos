@@ -70,7 +70,7 @@ const Preview = () => {
         <FormLabel>Fiat Currency</FormLabel>
         <Select {...register('fromFiat')}>
           {FIAT_CURRENCY.map((currency) => (
-            <option value={currency}>{currency}</option>
+            <option key={currency} value={currency}>{currency}</option>
           ))}
         </Select>
         <FormHelperText>

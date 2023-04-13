@@ -7,7 +7,17 @@ import stringToJson from '../../utils/stringToJson';
 import formatBreakline from '../../utils/formatBreakline';
 import { ApiQuote, ApiTxn } from '../../types/api.types';
 
-const WidgetPreview = () => {
+type WidgetPreviewPros = {
+  handleSuccess: (txn: ApiTxn) => void;
+  onWidgetClose: () => void;
+  onWidgetOpen: () => void;
+};
+
+const WidgetPreview = ({
+  handleSuccess,
+  onWidgetClose,
+  onWidgetOpen,
+}: WidgetPreviewPros) => {
   const { watch, formState } = useFormContext();
 
   const widgetParams = watch();
@@ -18,21 +28,31 @@ const WidgetPreview = () => {
 
   const callbacks = useMemo(() => {
     return {
-      onTransactionCompleted: (data: ApiTxn) =>
-        console.log('TXN COMPLETED SUCCESS', data),
+      onTransactionCompleted: (data: ApiTxn) => {
+        console.log('TXN COMPLETED SUCCESS', data);
+        if (data.txnStatus === 'received') {
+          handleSuccess(data);
+        }
+      },
       onTransactionExpired: (data: ApiTxn) =>
         console.log('TXN COMPLETED FAIL', data),
       onTransactionCreated: (data: ApiTxn) =>
         console.log('TXN CREATED SUCCESS', data),
-      onTransactionFailed: (err: string) =>
-        console.log('TXN CREATED FAIL', err),
+      onTransactionFailed: (data: ApiTxn) =>
+        console.log('TXN CREATED FAIL', data),
       onQuoteUpdated: (data: ApiQuote) => console.log('QUOTE UPDATED', data),
       onTransactionCancelled: (data: ApiTxn) =>
         console.log('TXN CANCELLED', data),
-      onClose: () => console.log('WIDGET CLOSED'),
-      onOpen: () => console.log('WIDGET OPENED'),
+      onClose: () => {
+        console.log('WIDGET CLOSED');
+        onWidgetClose();
+      },
+      onOpen: () => {
+        console.log('WIDGET OPENED');
+        onWidgetOpen();
+      },
     };
-  }, []);
+  }, [handleSuccess, onWidgetClose, onWidgetOpen]);
 
   const widgetConfig = useMemo(
     () => ({
@@ -86,7 +106,7 @@ const WidgetPreview = () => {
       <Helmet>
         <script
           defer
-          src={`https://pay.remuno.com/widget.min.js`}
+          src={`https://pay-dev.remuno.com/widget.min.js`}
           type='text/javascript'
         />
       </Helmet>
