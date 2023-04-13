@@ -106,7 +106,7 @@ const WidgetPreview = ({
       <Helmet>
         <script
           defer
-          src={`https://pay-dev.remuno.com/widget.min.js`}
+          src={`https://pay.remuno.com/widget.min.js`}
           type='text/javascript'
         />
       </Helmet>
