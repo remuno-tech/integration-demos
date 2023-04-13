@@ -1,14 +1,16 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import Helmet from 'react-helmet';
+import { useFormContext } from 'react-hook-form';
+import { Box } from '@chakra-ui/react';
 
-import { useAppSelector } from '../../store/hooks';
 import stringToJson from '../../utils/stringToJson';
 import formatBreakline from '../../utils/formatBreakline';
-import { Box } from '@chakra-ui/react';
 import { ApiQuote, ApiTxn } from '../../types/api.types';
 
 const WidgetPreview = () => {
-  const widgetParams = useAppSelector((state) => state.widget);
+  const { watch } = useFormContext();
+
+  const widgetParams = watch();
 
   const [isScriptLoaded, setIsScriptLoaded] = useState(
     !!(window as any).Remuno?.Widget,
