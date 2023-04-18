@@ -19,7 +19,7 @@ const merchantId = localStorage.getItem('merchantId');
 
 let DEFAULT_SUMMARY = {
   template:
-    'You will get:\\nAt least {d:decimalAmount} coins {i:coinImage:20px#20px}', // using \\n to display \n in input
+    'You will get:\nAt least {d:decimalAmount} coins {i:coinImage:20px#20px}',
   variables: {
     decimalAmount: '10000',
     coinImage: 'https://remuno.com/icons/icon-placeholder.png',
@@ -50,7 +50,7 @@ let remunoConfig = {
   scriptHtml: '',
   buttonHtml: '',
   confirmCoinSelection: false,
-  marketRate: true,
+  marketRate: false,
   isEnabledCustomDetails: false,
   customDetails: {},
   selectedCoins: [],

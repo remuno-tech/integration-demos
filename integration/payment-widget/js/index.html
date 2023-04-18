@@ -51,6 +51,7 @@
     <div id="root">
       <div class="d-flex">
         <div class="p-2" style="width: 50%; height: 100vh; overflow: auto">
+          <h1>Remuno Payment Widget - Javascript Integration</h1>
           <div class="mb-3">
             <label for="apiKey" class="form-label">API Key</label>
             <input
@@ -73,6 +74,9 @@
               onchange="handleChange('merchantId',this.value)"
               id="merchantId"
             />
+            <div class="form-text">
+              The merchant ID is available from the <a href="https://remuno.com/merchant/1/profile">Merchant Profile</a> page.
+            </div>
           </div>
           <div class="mb-3">
             <label for="notificationUrl" class="form-label"
@@ -317,55 +321,6 @@
             />
             <div style="display: none" id="selectedCoinsContainer"></div>
             <div class="form-text">Narrows list of coins to selected ones</div>
-          </div>
-          <h2>Callbacks</h2>
-          <ul>
-            <li>onTransactionCompleted: (data: ApiTxn) => void;</li>
-            <li>onTransactionExpired: (data: ApiTxn) => void;</li>
-            <li>onTransactionCreated: (data: ApiTxn) => void;</li>
-            <li>onTransactionFailed: (error?: string) => void;</li>
-            <li>onTransactionCancelled: (data: ApiTxn) => void;</li>
-            <li>onQuoteUpdated: (data: ApiQuote) => void;</li>
-            <li>onOpen: () => void;</li>
-            <li>onClose: () => void;</li>
-          </ul>
-          <h2>Types</h2>
-          <div>
-            <h4>ApiQuote</h4>
-            <div>
-              quote: { adjustedAmount: string; amount: string; quote: string;
-              fromFiat: string; marketRate: boolean; networkFeesCoin: string;
-              networkFeesFiat: string; toCoin: string; createdAt: string;
-              exchangeRate: string; nonce: string; toNetwork: string;
-              marketExchangeRate: string; }; token: string;
-            </div>
-            <h4>ApiTxn</h4>
-            <div>
-              adjustedInitialAmount: string; id: string; txnStatus: 'pending' |
-              'confirming' | 'received' | 'quote_expired' | 'expired';
-              merchantId: string; walletCoinId: string; orderId: string;
-              orderDescription: string; walletAddress: string; fromFiat: string;
-              toCoin: string; quote: string; quoteExpiresAt: string;
-              paymentMarkupPercent: string; maxPaymentCompletePercent: string;
-              minPaymentCompletePercent: string; txnFeePercent: number;
-              paymentExpiryPeriodSeconds: number; paymentExpiresAt: string;
-              keyName: string | null; paymentStatus: 'underpaid' | 'paid' |
-              'overpaid' | 'no_payment' | 'failure'; settlementStatus: string;
-              paymentNotificationUrl: string; createdAt: string; updatedAt:
-              string; initialAmount: string; receivedAmount: string;
-              nextPaymentStatus?: 'underpaid' | 'paid' | 'overpaid' |
-              'no_payment' | 'failure';
-            </div>
-            <h4>ApiCoin</h4>
-            <div>
-              id: string; displayCode?: string; code: string; displayName:
-              string; extraId: string | null; extraIdRegex: string | null;
-              logoUrl: string; network: string; protocol: string; tokenAddress?:
-              string | null; chainId?: number | null; transferGasLimit: number |
-              null; isPromoted?: boolean; isPopular: boolean; isStableCoin:
-              boolean; isNativeCoin: boolean; isTrending: boolean; decimals:
-              number;
-            </div>
           </div>
         </div>
         <div style="padding: 8px">
