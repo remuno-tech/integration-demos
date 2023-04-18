@@ -17,7 +17,7 @@ const ApiIntegration = () => {
 
   return (
     <>
-      <Text as='b'>API Integration</Text>
+      <Text as='b'>Remuno Payment Widget - React Integration</Text>
       <FormControl>
         <FormLabel>Api Key</FormLabel>
         <Input
