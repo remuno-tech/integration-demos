@@ -52,6 +52,7 @@ Object.keys(remunoConfig).forEach((field) => {
   }
 });
 setInitialSummary();
+setCoinsList();
 
 // check is valid json
 function stringToJson(str) {
@@ -112,23 +113,25 @@ function handleSelectCoin(coin) {
 
 // get coins and set options to choose
 function setCoinsList() {
-  const selector = document.getElementById('selectedCoinsContainer');
-  fetch(
-    `https://api.remuno.com/v1/merchants/${remunoConfig.merchantId}/coins`,
-    { headers: { 'x-api-key': remunoConfig.apiKey } },
-  )
-    .then((res) => res.json())
-    .then((data) => {
-      selector.innerHTML = '';
-      data?.forEach((coin) => {
-        const input = `<div>
+  if (remunoConfig.merchantId && remunoConfig.apiKey) {
+    const selector = document.getElementById('selectedCoinsContainer');
+    fetch(
+      `https://api-dev.remuno.com/v1/merchants/${remunoConfig.merchantId}/coins`,
+      { headers: { 'x-api-key': remunoConfig.apiKey } },
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        selector.innerHTML = '';
+        data?.forEach((coin) => {
+          const input = `<div>
              <label class="form-check-label" for="coins-${coin.displayName}">${coin.displayName}</label>
              <input className="form-check-input" onchange="handleSelectCoin('${coin.code}', this.checked)" type="checkbox"
                     role="switch" id="coins-${coin.displayName}">
           </div>`;
-        selector.innerHTML += input;
+          selector.innerHTML += input;
+        });
       });
-    });
+  }
 }
 
 // setter for custom message on quote template
@@ -189,9 +192,7 @@ function handleChange(field, value) {
     case 'merchantId':
       localStorage.setItem(field, value);
       remunoConfig[field] = value;
-      if (remunoConfig.apiKey && remunoConfig.merchantId) {
-        setCoinsList();
-      }
+      setCoinsList();
       break;
     case 'isEnabledCustomDetails':
       const customDetails = document.getElementById('customDetails');
