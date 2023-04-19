@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { useFormContext } from 'react-hook-form';
 import {
   Modal,
   ModalOverlay,
@@ -23,6 +24,9 @@ const SuccessPaymentModal: React.FC<IModalProps> = ({
   onClose,
   txn,
 }) => {
+  const { watch } = useFormContext();
+  const merchantName = watch('markup.merchantName');
+
   return (
     <Modal isCentered isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
@@ -41,6 +45,9 @@ const SuccessPaymentModal: React.FC<IModalProps> = ({
         />
         <ModalBody>
           <Flex alignItems='center' direction='column' gap='10px' mt='10px'>
+            <Text fontWeight='bold' textAlign='center'>
+              Thank you for purchasing from {merchantName}
+            </Text>
             <Text fontWeight='bold' textAlign='center'>
               Your transaction ID is: {txn?.id}
             </Text>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import {
@@ -10,10 +10,30 @@ import {
 } from '@chakra-ui/react';
 
 const ApiIntegration = () => {
-  const { register } = useFormContext();
+  const { register, watch, setValue } = useFormContext();
 
   const apiKey = register('apiKey');
   const merchantId = register('merchantId');
+
+  const apiKeyValue = watch('apiKey');
+  const merchantIdValue = watch('merchantId');
+
+  useEffect(() => {
+    const getMarkup = async () => {
+      if (merchantIdValue && apiKeyValue) {
+        fetch(
+          `https://api.remuno.com/v1/merchants/${merchantIdValue}/markup?price=0`,
+          {
+            headers: { 'x-api-key': apiKeyValue },
+          },
+        )
+          .then((res) => res.json())
+          .then((data) => setValue('markup', data))
+          .catch((err) => console.error(err));
+      }
+    };
+    getMarkup();
+  }, [apiKeyValue, merchantIdValue, setValue]);
 
   return (
     <>

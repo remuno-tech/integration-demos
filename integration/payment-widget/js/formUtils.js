@@ -53,6 +53,7 @@ Object.keys(remunoConfig).forEach((field) => {
 });
 setInitialSummary();
 setCoinsList();
+setMerchantName();
 
 // check is valid json
 function stringToJson(str) {
@@ -116,7 +117,7 @@ function setCoinsList() {
   if (remunoConfig.merchantId && remunoConfig.apiKey) {
     const selector = document.getElementById('selectedCoinsContainer');
     fetch(
-      `https://api-dev.remuno.com/v1/merchants/${remunoConfig.merchantId}/coins`,
+      `https://api.remuno.com/v1/merchants/${remunoConfig.merchantId}/coins`,
       { headers: { 'x-api-key': remunoConfig.apiKey } },
     )
       .then((res) => res.json())
@@ -130,6 +131,20 @@ function setCoinsList() {
           </div>`;
           selector.innerHTML += input;
         });
+      });
+  }
+}
+
+// set merchant name in modal
+function setMerchantName() {
+  if (remunoConfig.merchantId && remunoConfig.apiKey) {
+    fetch(
+      `https://api.remuno.com/v1/merchants/${remunoConfig.merchantId}/markup?price=0`,
+      { headers: { 'x-api-key': remunoConfig.apiKey } },
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        document.querySelector('#merchant-name').innerHTML = data.merchantName;
       });
   }
 }
@@ -193,6 +208,7 @@ function handleChange(field, value) {
       localStorage.setItem(field, value);
       remunoConfig[field] = value;
       setCoinsList();
+      setMerchantName();
       break;
     case 'isEnabledCustomDetails':
       const customDetails = document.getElementById('customDetails');
