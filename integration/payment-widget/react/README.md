@@ -1,6 +1,14 @@
-# Getting Started with Create React App
+# React JS Payment Widget Integration
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). It demonstrates React JS integration with the Remuno payment widget. To run the demo:
+
+1. `npm install`
+2. `npm start`
+3. Provide an enabled widget API key from the merchant dashboard [Integration / Api](https://remuno.com/merchant/1/api-keys) page.
+4. Provide your merchant ID from the [Account / Merchant profile](https://remuno.com/merchant/1/profile) page.
+5. Click the `Checkout in Crypto` Remuno button to show the payment widget.
+
+For more details on payment widget integration, visit the [documentation](https://docs.remuno.com/#payment-widget).
 
 ## Available Scripts
 
